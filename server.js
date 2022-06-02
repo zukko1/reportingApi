@@ -15,6 +15,27 @@ app.set("view engine", "pug");
 app.get("/", (request, response) => {
     response.sendStatus(200)
 });
+
+
+app.use(function (request, response, next) {
+
+    // Set the rules and policies (these will get violated for the demo)
+    response.set(
+        "Content-Security-Policy",
+        `script-src 'self'; object-src 'none'; report-to main-endpoint;`
+    );
+    response.set("Document-Policy", `document-write=?0;report-to=main-endpoint`);
+    // experimental
+    response.set("Permissions-Policy", `microphone=()`);
+
+    // Set the endpoints (API v1)
+    response.set(
+        "reporting-endpoints",
+        `main-endpoint="${REPORTING_ENDPOINT_MAIN}", default="${REPORTING_ENDPOINT_DEFAULT}"`
+    );
+
+    next();
+});
 /*
 app.use(express.static("public"));
 app.set("view engine", "pug");
