@@ -8,6 +8,10 @@ const REPORTS_DISPLAY_URL = REPORTING_ENDPOINT_BASE;
 const CODE_URL = "https://glitch.com/edit/#!/reporting-api-demo";
 const AUTHOR = "https://twitter.com/maudnals";
 
+app.get("/", (request, response) => {
+    response.sendStatus(200)
+});
+/*
 app.use(express.static("public"));
 app.set("view engine", "pug");
 
@@ -58,6 +62,7 @@ app.get("/page", (request, response) => {
         author: AUTHOR
     });
 });
+*/
 
 const listener = app.listen(39217, () => {
     console.log("Your app is listening on port " + listener.address().port);
