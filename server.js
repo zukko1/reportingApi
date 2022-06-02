@@ -13,7 +13,7 @@ app.use(express.static("public"));
 app.set("view engine", "pug");
 
 app.get("/", (request, response) => {
-    response.sendStatus(200)
+    response.redirect("/page");
 });
 
 
@@ -35,6 +35,15 @@ app.use(function (request, response, next) {
     );
 
     next();
+});
+
+app.get("/page", (request, response) => {
+    response.render("index", {
+        version: "v1",
+        reportsDisplayUrl: REPORTS_DISPLAY_URL,
+        codeUrl: CODE_URL,
+        author: AUTHOR
+    });
 });
 /*
 app.use(express.static("public"));
