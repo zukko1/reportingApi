@@ -38,7 +38,12 @@ app.use(function (request, response, next) {
 });
 
 app.get("/page", (request, response) => {
-    response.sendStatus(200)
+    response.render("index", {
+        version: "v1",
+        reportsDisplayUrl: REPORTS_DISPLAY_URL,
+        codeUrl: CODE_URL,
+        author: AUTHOR
+    });
 });
 /*
 app.use(express.static("public"));
@@ -93,6 +98,6 @@ app.get("/page", (request, response) => {
 });
 */
 
-const listener = app.listen(39217, () => {
+const listener = app.listen(3200, () => {
     console.log("Your app is listening on port " + listener.address().port);
 });
