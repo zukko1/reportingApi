@@ -8,6 +8,10 @@ const REPORTS_DISPLAY_URL = REPORTING_ENDPOINT_BASE;
 const CODE_URL = "https://glitch.com/edit/#!/reporting-api-demo";
 const AUTHOR = "https://twitter.com/maudnals";
 
+
+app.use(express.static("public"));
+app.set("view engine", "pug");
+
 app.get("/", (request, response) => {
     response.sendStatus(200)
 });
